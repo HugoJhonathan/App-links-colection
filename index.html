@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"
+        integrity="sha512-zYXldzJsDrNKV+odAwFYiDXV2Cy37cwizT+NkuiPGsa9X1dOz04eHvUWVuxaJ299GvcJT31ug2zO4itXBjFx4w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <template id="pasta">
+            <div class="column" id="column">
+                <div class="head">
+                    <input type="text" placeholder="nome da coleção">
+                    <span class="material-symbols-outlined delete">more_vert</span>
+                    <div class="options">
+                        <ul>
+                            <li class="criarNovoLink">Adicionar Link</li>
+                            <li class="excluir">Excluir</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="links" id="links"></div>
+                </div>
+            </div>
+        </template>
+
+
+        <template id="link">
+            <a class="list-group-item" draggable="true" href="" target="_blank">
+                <li></li>
+                <span><b></b></span>
+            </a>
+        </template>
+
+
+
+    </div>
+
+
+    <div id="cadastroLink">
+        <form action="">
+            <h2>Adicionar Link na coleção SteamKeys</h2>
+            <label for="">URL</label>
+            <input id="url" type="text" autocomplete="off" name="" id="" placeholder="ex: https://www.google.com/">
+            <label for="">Nome</label>
+            <input id="nome" type="text" autocomplete="off" name="" id="" placeholder="Nome do Site (opcional)">
+
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+
+
+    <div class="links lixeira" id="links">
+        <h1> <span class="material-symbols-outlined delete"></span> Drop here for delete</h1>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
