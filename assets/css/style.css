@@ -5,35 +5,67 @@
     font-family: "Trebuchet MS", sans-serif;
 }
 
-html {
-    font-family: 'Nunito';
+:root {
+    --colorPrimary: #00b400;
 }
+
+html {}
 
 body {
     background-color: #333;
     color: white;
-    padding: 30px;
 }
 
-.invisible {
-    background-color: #23d2ac !important;
+/*  HEADER */
+header {
+    background-color: #111;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 15px;
 }
 
+header #title {
+    display: flex;
+}
 
+header #title h1 {
+    margin-left: 5px;
+    font-size: 1.2em;
+}
 
+header div#inputColor {
 
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+}
+
+header div#inputColor input[type='color'] {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.5);
+}
+
+/*  FIM HEADER */
 
 .container {
     font-family: "Trebuchet MS", sans-serif;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     gap: 20px;
-    transition: 1s;
+    padding: 15px;
 }
 
+/* COLLECTION */
 .column {
     display: flex;
     flex-direction: column;
@@ -42,125 +74,51 @@ body {
     border: 1px solid rgb(74, 74, 74);
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.1);
-    min-width: 200px;
+}
 
+.column.dragOver {
+    outline: 1px solid var(--colorPrimary);
+    outline-offset: -1px;
+}
+
+.column.dragOver input {
+    color: var(--colorPrimary) !important;
+}
+
+.column.dragOver .links {
+    padding: 5px;
 
 }
 
-.links {
-    display: flex;
-    min-width: 45px;
-    min-height: 45px;
-    flex-wrap: wrap;
-    /* background-color: red !important; */
-}
-
-.column a {
-    padding: 10px;
-
-    cursor: pointer;
-    position: relative;
-}
-
-.column .links a:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-.column a li {
-    list-style: none;
-    height: 25px;
-    width: 25px;
-    background-position: center center;
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    position: relative;
-
-}
-
-.column a span {
-
-    position: absolute;
-    width: auto;
-    min-width: 150px;
-    height: 20px;
-    top: 50px;
-    left: 0px;
-    color: #f1f1f1;
-    font-size: 14px;
-}
-
-.column a span {
-    display: none;
-}
-
-.column a:hover>span {
-    display: block;
-}
-
-
-.column .content {
-
-    display: flex;
-}
-
-/* */
-#createNewFolder {
-    background-color: rgb(89, 88, 88);
-    width: 40px;
-    height: 40px;
-
-    border-radius: 100%;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    /* outline:1px solid red;
-    outline-offset: -1px !important; */
-    color: red;
-    background-color: #00b400;
-    color: #333;
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-
-    
+.column.dragOver .links {
+    background-color: #333;
+    outline: none;
 }
 
 .column .head {
-
     position: relative;
-
-    width: 100%;
+    width: auto;
     height: 40px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .column .head input {
     outline: none;
     border: none;
     font-size: 14px;
-    padding: 10px;
     background-color: transparent;
     font-weight: bold;
     color: #fff;
-
-    max-width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: calc(100% - 40px);
+    display: inline-block;
+    width: auto;
     height: 100%;
-
-}
-
-* {
-    
+    padding: 10px;
+    flex: 1 1 auto;
+    min-width: 100px;
 }
 
 .column .head span {
-    position: absolute;
     right: 5px;
     top: 5px;
     height: 100%;
@@ -171,13 +129,13 @@ body {
     color: rgb(217, 217, 217);
     cursor: pointer;
     font-size: 20px;
-
     height: 30px;
     border-radius: 100%;
 }
 
 .column .head span:hover {
     background-color: rgba(0, 0, 0, 0.08);
+    color: #fff;
 }
 
 .column .head span.marcado {
@@ -187,15 +145,12 @@ body {
 .column .head .options {
     background-color: #111;
     position: fixed;
-    
     border-radius: 5px;
     display: none;
     z-index: 9;
-
 }
 
 .column .head .options ul {
-   
     display: flex;
     flex-direction: column;
     gap: 3px;
@@ -228,10 +183,83 @@ body {
     color: #fff;
 }
 
-.column .head span:hover {
-    color: #fff;
+.column .links {
+    display: flex;
+    min-width: 45px;
+    min-height: 45px;
+    flex-wrap: wrap;
+    transition: 0.2s;
+    width: 100%;
 }
 
+.column .links a {
+    cursor: pointer;
+    position: relative;
+}
+
+.column .links a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.column .links a li {
+    list-style: none;
+    height: 50px;
+    width: 50px;
+    background-position: center center;
+    background-size: 20px auto;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.column .links a.dragging li {
+    background-color: rgba(0, 0, 0, 0.2);
+    outline: 2px dotted rgba(255, 255, 255, 0.3);
+    outline-offset: -2px;
+}
+
+.column a span {
+    position: absolute;
+    width: auto;
+    min-width: 150px;
+    height: 20px;
+    top: 50px;
+    left: 0px;
+    color: #f1f1f1;
+    font-size: 14px;
+}
+
+.column a span {
+    display: none;
+}
+
+.column a:hover>span {
+    display: block;
+}
+
+/* FIM COLLECTION */
+
+/* BOTÃO ADD + */
+#createNewFolder {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    align-self: center;
+    color: red;
+    background-color: var(--colorPrimary);
+    color: #333;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+/* TELA DE CADASTRO DE LINK */
 #cadastroLink {
     background-color: rgba(0, 0, 0, 0.6);
     position: fixed;
@@ -261,7 +289,6 @@ body {
     font-size: 16px;
     margin-bottom: 30px;
     text-align: center;
-
 }
 
 #cadastroLink input {
@@ -277,76 +304,36 @@ body {
 }
 
 #cadastroLink input[type="submit"] {
-    background-color: #00b400;
+    background-color: var(--colorPrimary);
+    ;
     color: #fff;
     font-size: 25px;
     margin-top: 10px;
+    cursor: pointer;
 }
+
+/* FIM TELA DE CADASTRO DE LINK */
 
 .show {
     display: flex !important;
 }
 
-.links {
-    width: 100%;
-}
 
 
 
-
-
-
-.blue-background-class {
-    outline: 2px dashed #fff;
-
-    outline-offset: -2px !important;
-
-}
-
-.itemFinalizado {
-    border: none;
-}
-
-.sortable-chosen {
-    cursor: pointer;
-}
-
-.hugo {
-    cursor: not-allowed;
-}
-
-.ui-sortable-handle {
-  
-}
-
-.list-group-item {
-  
-
-}
-
-.box-colecoes {
-    padding: 10px;
-    background-color: red;
-    flex-wrap: wrap;
-    display: flex;
-    gap: 10px;
-}
-
-
+/* LIXEIRA */
 .lixeira {
     position: fixed;
     z-index: 2;
-    bottom: -200px;
+    bottom: -210px;
     width: 100%;
     left: 0;
     height: 200px;
-    background-color: red;
-    /* display: none; */
     color: rgba(255, 255, 255, 0.5);
     border-radius: 100%;
-    /* box-shadow: 0 0 40px 100px green; */
     background-image: linear-gradient(rgba(255, 0, 0, 0), rgba(255, 51, 0, 0.467));
     transition: .2s;
+    /* display: none; */
 }
 
 .lixeira h1 {
@@ -358,7 +345,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
     height: 100px;
     transition: transform 0.3s ease;
     cursor: not-allowed;
@@ -366,13 +352,16 @@ body {
     transition: .2s;
 }
 
+.lixeira.excluir h1 {
+    transform: scale(1.1);
+}
+
 .lixeira.lixeira-hover {
-
     display: block;
-
     box-shadow: 0 0 40px 100px rgba(255, 0, 0, 0.171);
 }
-.lixeira.lixeira-hover h1{
+
+.lixeira.lixeira-hover h1 {
     display: flex;
 }
 
@@ -389,26 +378,16 @@ body {
 }
 
 .lixeira.excluir {
-    color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 40px 100px rgba(255, 0, 0, 0.281);
-}
-
-.lixeira.excluir h1 {
-    transform: scale(1.1);
+    color: rgba(255, 255, 255, 0.8) !important;
+    box-shadow: 0 0 40px 100px rgba(255, 0, 0, 0.281) !important;
 }
 
 .lixeira #links {
     width: 100%;
     height: 100%;
-
-
 }
 
-.lixeira a li,
-span {}
-
 .lixeira a li {
-    
     list-style: none;
     height: 25px;
     width: 25px;
@@ -416,40 +395,56 @@ span {}
     background-size: 100% auto;
     background-repeat: no-repeat;
     position: relative;
-
 }
 
-#messages{
-   
-    width:100%;
+/* FIM LIXEIRA */
+
+/* MENSAGENS POPUP */
+#messages {
+    width: 100%;
     position: fixed;
-    bottom:0;
-    left:0;
+    z-index: 90;
+    bottom: 0;
+    left: 0;
     height: 80px;
     transform: translate3d(0, 300%, 0);
-   
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  display: none;
-  font-weight: bold;
-  color:#00b400;
-}
-#messages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: none;
+    font-weight: bold;
+    color: var(--colorPrimary);
     display: flex;
     animation-name: example;
-    animation-duration: 1500ms;
+    animation-duration: 1300ms;
 }
+
 @keyframes example {
-    0% { transform: translate3d(0, 300%, 0) }
-    7% { transform: translate3d(0, -27px, 0) }
-    20% { transform: translate3d(0, 12px, 0) }
-    80% { transform: translate3d(0, 12px, 0) }
-    100% { transform: translate3d(0, 300%, 0) }
-  }
+    0% {
+        transform: translate3d(0, 300%, 0)
+    }
 
+    12% {
+        transform: translate3d(0, -27px, 0)
+    }
 
-span.delete, #createNewFolder, #messages{
-    user-select: none;
+    35% {
+        transform: translate3d(0, 12px, 0)
+    }
+
+    80% {
+        transform: translate3d(0, 12px, 0)
+    }
+
+    100% {
+        transform: translate3d(0, 300%, 0)
+    }
+}
+
+span.delete,
+#createNewFolder,
+#messages,
+header {
+    user-select: none !important;
 }
