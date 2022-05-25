@@ -15,8 +15,11 @@ body {
     background-color: #333;
     color: white;
 }
-
 /*  HEADER */
+
+.arrastar{
+    background-color: red !important;
+}
 header {
     background-color: #111;
     height: 70px;
@@ -74,6 +77,8 @@ header div#inputColor input[type='color'] {
     border: 1px solid rgb(74, 74, 74);
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    
 }
 
 .column.dragOver {
@@ -83,6 +88,7 @@ header div#inputColor input[type='color'] {
 
 .column.dragOver input {
     color: var(--colorPrimary) !important;
+    
 }
 
 .column.dragOver .links {
@@ -92,7 +98,10 @@ header div#inputColor input[type='color'] {
 
 .column.dragOver .links {
     background-color: #333;
-    outline: none;
+    outline: none;    
+}
+.not-drag{
+    pointer-events: none !important;
 }
 
 .column .head {
@@ -101,6 +110,9 @@ header div#inputColor input[type='color'] {
     height: 40px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding:5px;
+    gap:5px;
 }
 
 .column .head input {
@@ -113,7 +125,6 @@ header div#inputColor input[type='color'] {
     display: inline-block;
     width: auto;
     height: 100%;
-    padding: 10px;
     flex: 1 1 auto;
     min-width: 100px;
 }
@@ -144,10 +155,13 @@ header div#inputColor input[type='color'] {
 
 .column .head .options {
     background-color: #111;
-    position: fixed;
+    position: absolute;
     border-radius: 5px;
     display: none;
     z-index: 9;
+    top:37px;
+    right:17px;
+   
 }
 
 .column .head .options ul {
@@ -156,6 +170,7 @@ header div#inputColor input[type='color'] {
     gap: 3px;
     padding: 5px;
     cursor: pointer;
+   
 }
 
 .column .head .options ul li {
@@ -179,7 +194,7 @@ header div#inputColor input[type='color'] {
 }
 
 .column .head .options ul li.criarNovoLink:hover {
-    background-color: #4651c2;
+    background-color: var(--colorPrimary);
     color: #fff;
 }
 
@@ -190,11 +205,13 @@ header div#inputColor input[type='color'] {
     flex-wrap: wrap;
     transition: 0.2s;
     width: 100%;
+    
 }
 
 .column .links a {
     cursor: pointer;
     position: relative;
+ 
 }
 
 .column .links a:hover {
@@ -208,7 +225,7 @@ header div#inputColor input[type='color'] {
     background-position: center center;
     background-size: 20px auto;
     background-repeat: no-repeat;
-    position: relative;
+   
 }
 
 .column .links a.dragging li {

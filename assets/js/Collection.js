@@ -27,8 +27,6 @@ class Collection {
         this.criarElemento()  
     }
     events = () => {
-        console.log(this.input.value.length)
-        console.log(this.input.offsetWidth)
         this.input.style.width = this.input.value.length*8.18 + 20 + 'px'
        
         this.input.addEventListener('change', e => Collection.salvarLocal())
@@ -73,6 +71,7 @@ class Collection {
         this.formulario.classList.add('show')
         this.btnExcluir.classList.toggle('marcado')
         this.options.classList.toggle('show')
+        this.btnOptions.classList.toggle('marcado')
         pastaCriar = this
           
         navigator.clipboard
@@ -129,6 +128,7 @@ class Collection {
         dragItem = this
         event.dataTransfer.setDragImage(dragItem.firstChild, 28, 28)
         this.classList.add('dragging')
+        event.stopPropagation();
     }
       dragEnd() {
         this.classList.remove('dragging')
@@ -140,7 +140,10 @@ class Collection {
       Dropp(e) {
         e.preventDefault()
         Collection.salvarLocal()
-        this.classList.remove('dragOver')  
+        this.classList.remove('dragOver') 
+        document.querySelectorAll('.not-drag').forEach(el => {
+            el.classList.remove('not-drag')
+        })   
         
     }
     static getDragAfterElement(container, y) {
@@ -159,6 +162,11 @@ class Collection {
 
     dragOver(e) {
         divEntrou = this
+        if(!this.classList.contains('lixeira')){
+            this.querySelector('.head').classList.add('not-drag')
+            this.querySelector('.links').classList.add('not-drag')
+        }
+       
         e.preventDefault()
         e.dataTransfer.effectAllowed  = 'move'
         let afterElement = Collection.getDragAfterElement(this, e.clientX)
@@ -167,18 +175,21 @@ class Collection {
         } else{
             this.querySelector('.links').insertBefore(dragItem, afterElement)
         }
-        this.classList.add('dragOver')
-        
+        if(!this.classList.contains('dragOver')) this.classList.add('dragOver')
         if (this.classList.contains('lixeira')) return this.classList.add('excluir')
     }
-      dragEnter(e) {
+    dragEnter(e) {
         e.preventDefault()
         if (!this.classList.contains('lixeira')) divPartida = this
         document.querySelector('.lixeira').classList.add('lixeira-hover')
     }
-      dragLeave(e) {
-        this.classList.remove('dragOver')  
+    dragLeave(e) {
+        e.preventDefault()
+        divEntrou.classList.remove('dragOver')  
         if (divEntrou.classList.contains('lixeira')) {
+            document.querySelectorAll('.not-drag').forEach(el => {
+                el.classList.remove('not-drag')
+            })   
             divPartida.querySelector('.links').append(dragItem)
         }
         if (this.classList.contains('lixeira')) return this.classList.remove('excluir')
