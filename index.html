@@ -11,60 +11,91 @@
 </head>
 
 <body>
-    <header>
-        <div id="title">
-            <span class="material-symbols-outlined">schema</span>
-            <h1> My Collections</h1>
-        </div>
-        <div id="inputColor">
-            <input type="color">
-        </div>
-    </header>
-    
-    <div class="container">
-        <div id="cadastroLink">
-            <form>
-                <h2>Adicionar Link na coleção</h2>
-
-                <label for="url">URL</label>
-                <input id="url" type="text" autocomplete="off" required placeholder="ex: https://www.google.com/">
-                <label for="nome">Nome</label>
-                <input id="nome" type="text" autocomplete="off" placeholder="Nome do Site (opcional)">
-                <input type="submit" value="Enviar">
-            </form>
-        </div>
-
-        <span id="createNewFolder" class="material-symbols-outlined">add</span> 
+    <div id="sideMenu">
+        <nav>
+            <ul>
+              
+                <li>
+                    <label for="color">
+                    <div id="inputColor">
+                        <input type="color" id="color"> 
+                    </div>
+                     Change Primary Color
+                    </label>
+                </li>
+                <li>
+                    <label for="ck">
+                    <div> <input type="checkbox" disabled id="ck" name="" id="" checked></div>
+                   
+                    Theme Dark
+                </label>
+                </a>
+                </li>
+                
+            </ul>
+        </nav>
     </div>
 
-    <div class="lixeira column">
-        <h1> <span class="material-symbols-outlined delete"></span> Drop here for delete</h1>
-        <div class="links"></div>
-    </div>
-
-    <template id="pasta"> <!-- Template Collection -->
-        <div class="column" id="column">
-            <div class="head ">
-                <input class="" type="text" placeholder="collection name">
-                <span class=" material-symbols-outlined delete">more_vert</span>
-                <div class=" options">
-                    <ul>
-                        <li class="criarNovoLink">Adicionar Link</li>
-                        <li class="excluir">Excluir</li>
-                    </ul>
-                </div>
+    <main class="">
+        <header>
+            <div id="title">
+                <span id="open-menu" class="material-symbols-outlined">
+                    menu
+                    </span>
+                <!-- <span class="material-symbols-outlined">schema</span> -->
+                <h1> My Collections</h1>
             </div>
             
-                <div class="links"></div>
-            
+        </header>
+    
+       
+        
+        <div class="container">
+            <div id="cadastroLink">
+                <form>
+                    <h2>Adicionar Link na coleção</h2>
+    
+                    <label for="url">URL</label>
+                    <input id="url" type="text" autocomplete="off" required placeholder="ex: https://www.google.com/">
+                    <label for="nome">Nome</label>
+                    <input id="nome" type="text" autocomplete="off" placeholder="Nome do Site (opcional)">
+                    <input type="submit" value="Enviar">
+                </form>
+            </div>
+    
+            <span id="createNewFolder" class="material-symbols-outlined">add</span> 
         </div>
-    </template>
-
-    <template id="link"> <!-- Template Link -->
-        <a class="list-group-item" draggable="true" target="_blank">
-            <li></li>
-            <span><b></b></span>
-        </a>
-    </template>
+    
+        <div class="lixeira column">
+            <h1> <span class="material-symbols-outlined delete"></span> Drop here for delete</h1>
+            <div class="links"></div>
+        </div>
+    
+        <template id="pasta"> <!-- Template Collection -->
+            <div class="column mode" id="column">
+                <div class="head ">
+                    <input class="" type="text" placeholder="collection name">
+                    <span class=" material-symbols-outlined delete">more_vert</span>
+                    <div class=" options">
+                        <ul>
+                            <li class="criarNovoLink">Adicionar Link</li>
+                            <li class="excluir">Excluir</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                    <div class="links"></div>
+                
+            </div>
+        </template>
+    
+        <template id="link"> <!-- Template Link -->
+            <a class="list-group-item" draggable="true" target="_blank">
+                <li></li>
+                <span><b></b></span>
+            </a>
+        </template>
+    </main>
+    
 </body>
 </html>

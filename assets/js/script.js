@@ -6,6 +6,10 @@ const inputSubmit = document.querySelector('#createNewFolder')
 let dataCollectionLocal = JSON.parse(localStorage.getItem('data'))
 let dataConfigLocall = JSON.parse(localStorage.getItem('config'))
 
+document.querySelector('#open-menu').addEventListener('click', () => {
+    document.querySelector('#sideMenu').classList.toggle('open')
+    document.querySelector('main').classList.toggle('open')
+})
 if(dataConfigLocall){
     document.querySelector('#inputColor input').value = dataConfigLocall.color
     document.querySelector(':root').style.setProperty('--colorPrimary', dataConfigLocall.color)

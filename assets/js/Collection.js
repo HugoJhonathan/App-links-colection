@@ -78,6 +78,8 @@ class Collection {
             .readText()
             .then(cliptext => {
                 document.querySelector('#url').value = cliptext
+                document.querySelector('#nome').value = 'eae'
+                console.log( document.querySelector('#url'))
                 document.querySelector('#nome').focus()
             })
             .catch(err => message('Dê permissão para acessar sua area de tranferência!'))
@@ -132,7 +134,6 @@ class Collection {
     }
       dragEnd() {
         this.classList.remove('dragging')
-        setTimeout(() => this.style.display = 'block', 0);
         dragItem = null
         document.querySelector('.lixeira').classList.remove('lixeira-hover', 'excluir')
         divPartida = null
@@ -146,18 +147,20 @@ class Collection {
         })   
         
     }
-    static getDragAfterElement(container, y) {
+    static getDragAfterElement(container, x, y) {
         const draggableElements = [...container.querySelectorAll('.list-group-item:not(.dragging)')]
-    
         return draggableElements.reduce((closest, child) => {
             const box = child.getBoundingClientRect()
-            const offset = y - box.left - box.width / 2
-            if (offset < 0 && offset > closest.offset) {
-                return { offset: offset, element: child }
-            } else {
+            // const offsetX = x - box.left - box.width / 2
+            const offsetY = y - box.top + 0 - box.height / 2
+
+            if (offsetY < 0 &&(offsetY > closest.offsetY)){
+                 return { offsetY: offsetY, element: child }
+            }
+            else {
                 return closest
             }
-        }, { offset: Number.NEGATIVE_INFINITY }).element
+        }, { offsetY: Number.NEGATIVE_INFINITY }).element
     }
 
     dragOver(e) {
@@ -166,15 +169,15 @@ class Collection {
             this.querySelector('.head').classList.add('not-drag')
             this.querySelector('.links').classList.add('not-drag')
         }
-       
         e.preventDefault()
         e.dataTransfer.effectAllowed  = 'move'
-        let afterElement = Collection.getDragAfterElement(this, e.clientX)
+        let afterElement = Collection.getDragAfterElement(this, e.clientX, e.clientY)
         if (afterElement === null && !this.classList.contains('lixeira')) {
             this.querySelector('.links').append(dragItem)
         } else{
             this.querySelector('.links').insertBefore(dragItem, afterElement)
         }
+
         if(!this.classList.contains('dragOver')) this.classList.add('dragOver')
         if (this.classList.contains('lixeira')) return this.classList.add('excluir')
     }

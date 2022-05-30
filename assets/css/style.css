@@ -38,23 +38,6 @@ header #title h1 {
     font-size: 1.2em;
 }
 
-header div#inputColor {
-
-    border-radius: 100%;
-    width: 30px;
-    height: 30px;
-    overflow: hidden;
-}
-
-header div#inputColor input[type='color'] {
-    background-color: transparent;
-    outline: none;
-    border: none;
-    width: 100%;
-    height: 100%;
-    transform: scale(1.5);
-}
-
 /*  FIM HEADER */
 
 .container {
@@ -98,7 +81,8 @@ header div#inputColor input[type='color'] {
 
 .column.dragOver .links {
     background-color: #333;
-    outline: none;    
+    outline: none;   
+    overflow: hidden; 
 }
 .not-drag{
     pointer-events: none !important;
@@ -127,6 +111,9 @@ header div#inputColor input[type='color'] {
     height: 100%;
     flex: 1 1 auto;
     min-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding:5px;
 }
 
 .column .head span {
@@ -211,7 +198,7 @@ header div#inputColor input[type='color'] {
 .column .links a {
     cursor: pointer;
     position: relative;
- 
+    
 }
 
 .column .links a:hover {
@@ -228,10 +215,10 @@ header div#inputColor input[type='color'] {
    
 }
 
-.column .links a.dragging li {
-    background-color: rgba(0, 0, 0, 0.2);
-    outline: 2px dotted rgba(255, 255, 255, 0.3);
-    outline-offset: -2px;
+.column .links a.dragging{
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    outline: 2px dotted rgba(255, 255, 255, 0.3) !important;
+    outline-offset: -2px !important;
 }
 
 .column a span {
@@ -462,6 +449,208 @@ header div#inputColor input[type='color'] {
 span.delete,
 #createNewFolder,
 #messages,
-header {
+header, .head, nav {
     user-select: none !important;
+}
+
+.column.mode{
+
+}
+.column.mode .head{
+
+    display: flex;
+    width:100%;
+    
+}
+.column.mode .head .delete{
+   
+    flex: 0 0 30px;
+}
+.column.mode .head input{
+   
+    flex: 1 1 100%;
+    min-width:10px;
+}
+.column.mode .links{
+    flex-direction: column;
+    width: 100%;
+}
+.column.mode .links a{
+    display: flex;
+    flex-direction: row;
+    flex-wrap:nowrap;
+    height: 50px;
+    width: 100%;
+    padding:3px;
+    position: relative;
+    color:#fff;
+    text-decoration: none;
+    /* overflow: hidden; */
+    
+}
+.column.mode .links a li{
+    flex: 1 1 50px;
+    height: 100%;
+   
+    /* overflow: hidden; */
+}
+.column.mode .links span{
+    all: unset;
+  
+    /* background-color: red; */
+    overflow: hidden;
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    cursor: pointer;
+    flex: 1 1 90%;
+    /* background-color: red; */
+   
+}
+.column.mode .links span b{
+    all: unset;
+    /* background-color: #00b400; */
+    white-space: nowrap;
+}
+header{
+    padding:0px;
+}
+header #title{
+    display: flex;
+    align-items: center;
+    /* background-color: red; */
+    height: 100%;
+}
+#open-menu{
+    height: 100%;
+    width:70px;
+    text-align: center;
+    line-height: 70px;
+    cursor: pointer;
+    color:#a1a1a1;
+    /* background-color: green; */
+    
+}
+#open-menu:hover{
+   
+}
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 100%;
+    width: 100%;
+}
+#sideMenu{
+    background-color: #111;
+    height: 100%;
+    /* height: 100vh; */
+    position: fixed;
+    z-index: 9999;
+
+    transition: 0.2s;
+
+    display: flex;
+    flex-direction: column;
+    width:0;
+    top:0px;
+    overflow: hidden;
+    max-width: calc(100% - 50px);
+}
+main{
+    width:100%;
+    transition: .2s;
+   
+}
+
+#sideMenu.open{
+    width:300px;
+    max-width: calc(100% - 50px);
+}
+.dragging{
+    /* border:1px solid red !important; */
+    overflow: auto;
+}
+main.open{
+   
+    margin-left:300px;
+    /* max-width: calc(100% - 300px); */
+    overflow: hidden;
+}
+#sideMenu nav{
+    font-size:0.8em;
+    font-weight: bold;
+    /* background-color: #333; */
+    
+}
+#sideMenu nav ul{
+    display: flex;
+    flex-direction: column;
+   
+}
+#sideMenu nav ul li{
+    display: flex;
+    flex: 0 0 100%;
+    align-items: center;
+    gap:5px;
+     
+    white-space: nowrap;
+}
+#sideMenu nav ul li a, #sideMenu nav ul label{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-decoration: none;
+    flex: 0 0 100%;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    padding:10px;
+    color:#fff;
+    gap:10px;
+    padding:15px 20px;
+}
+#sideMenu nav ul div:nth-child(1){
+    width:20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#sideMenu nav ul div input[type="checkbox"]{
+    width:20px;
+    height: 20px;
+}
+
+/* #sideMenu label{
+    display: flex;
+    align-items: center;
+    gap:5px;
+} */
+
+#sideMenu nav ul li a:hover, #sideMenu nav ul li label:hover{
+    cursor: pointer;
+    background-color: #222;
+    color: var(--colorPrimary)
+}
+
+#inputColor {
+
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+}
+
+#inputColor input[type='color'] {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    transform: scale(3);
+    cursor: help;
 }
